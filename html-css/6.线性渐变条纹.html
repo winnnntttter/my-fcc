@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      div.div1 {
+        border-radius: 20px;
+        width: 70%;
+        height: 400px;
+        margin: 50 auto;
+        /* background: linear-gradient(35deg, #CCFFFF, #FFCCCC); */
+        background: repeating-linear-gradient(90deg, yellow 0px, blue 40px, green 40px, red 80px);
+        /* repeating-linear-gradient() 函数和 linear-gradient() 很像，主要区别是前者会重复指定的渐变。渐变开始于 0 像素位置的 yellow，然后过渡到距离开始位置 40 像素的 blue。 由于下一个渐变颜色的起始位置也是 40 像素，所以颜色直接渐变成第三个颜色值 green，然后过渡到距离开始位置 80 像素的 red。 */
+      }
+      div.div2 {
+        border-radius: 20px;
+        width: 70%;
+        height: 400px;
+        margin: 50 auto;
+        background: repeating-linear-gradient(45deg, yellow 0px, yellow 40px, black 40px, black 80px);
+      }
+    </style>
+
+    <div class="div1"></div>
+    <div class="div2"></div>
+  </body>
+</html>

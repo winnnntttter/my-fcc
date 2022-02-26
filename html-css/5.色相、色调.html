@@ -1,0 +1,70 @@
+<!-- 色相 是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。 以颜色光谱为例，光谱左边从红色开始，移动到中间的绿色，一直到右边的蓝色，色相值就是沿着这条线的取值。 在 hsl() 里面，色相用色环来代替光谱，色相值就是色环里面的颜色对应的从 0 到 360 度的角度值。
+
+饱和度 是指色彩的纯度，也就是颜色里灰色的占比。 饱和度越高则灰色占比越少，色彩也就越纯；反之则完全是灰色。 饱和度的取值范围是表示灰色所占百分比的 0 至 100。
+
+亮度 决定颜色的明暗程度，也就是颜色里白色或者黑色的占比。 其中，100% 的亮度表示纯白色， 0% 的亮度则表示纯黑色；而 50% 的亮度就表示在色相中选取的颜色。
+
+下面是一些使用 hsl() 描述颜色的例子，颜色都为满饱和度，中等亮度:
+
+颜色	HSL
+红	hsl(0, 100%, 50%)
+黄	hsl(60, 100%, 50%)
+绿	hsl(120, 100%, 50%)
+蓝绿	hsl(180, 100%, 50%)
+蓝	hsl(240, 100%, 50%)
+品红	hsl(300, 100%, 50%) -->
+
+<!-- hsl() 使 CSS 更改颜色色调更加方便。 比如，给一个纯色添加白色可以调出更浅的色调；添加黑色可以创造更深的色调。 另外，还可以通过给纯色添加灰色来同时改变颜色的深浅和明暗。 回忆下 hsl() 里面的 ‘s’ 和 ‘l’ 分别代表饱和度和亮度。 饱和度代表灰色的占比，亮度代表白色和黑色的占比。 这在你想获取一个基准色的变种的情景下会十分有用。 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      header {
+        background-color: hsl(180, 90%, 35%);
+        color: #ffffff;
+      }
+
+      nav {
+        background-color: hsl(180, 80%, 25%);
+      }
+
+      h1 {
+        text-indent: 10px;
+        padding-top: 10px;
+      }
+
+      nav ul {
+        margin: 0px;
+        padding: 5px 0px 5px 30px;
+      }
+
+      nav li {
+        display: inline;
+        margin-right: 20px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+
+    <header>
+      <h1>Cooking with FCC!</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Classes</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+  </body>
+</html>
