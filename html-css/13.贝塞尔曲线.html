@@ -1,0 +1,69 @@
+<!-- 在 CSS 动画里，我们可以用 cubic-bezier 来定义贝塞尔曲线。 曲线的形状代表了动画的速度。 曲线在 1 * 1 的坐标系统内， 其中 X 轴代表动画的时间间隔（类似于时间比例尺），Y 轴代表动画的改变。
+
+cubic-bezier 函数包含了 1 * 1 网格里的4个点：p0、p1、p2、p3。 其中 p0 和 p3 是固定值，代表曲线的起始点和结束点，坐标值依次为 (0, 0) 和 (1, 1)。 你只需设置另外两点的 x 值和 y 值，设置的这两点确定了曲线的形状从而确定了动画的速度曲线。 在 CSS 里面通过 (x1, y1, x2, y2) 来确定 p1 和 p2。 以下就是 CSS 贝塞尔曲线的例子：
+
+animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+在上面的例子里，两个点的 x 和 y 值相等（x1 = 0.25 = y1 和 x2 = 0.75 = y2）。如果你还记得几何课的知识，结果是从原点到点 (1, 1) 的一条直线。 元素在动画中的速度呈线性，效果和使用 linear 关键词的效果一致。 换言之，元素匀速运动。 -->
+
+<!-- 下面是贝塞尔曲线模仿 ease-out 预定义值的例子：
+
+animation-timing-function: cubic-bezier(0, 0, 0.58, 1);
+记住所有的 cubic-bezier 函数都是从坐标为 (0, 0) 的 p0 开始，在坐标为 (1, 1) 的 p3 结束。 在这个例子里，曲线在 y 轴（从 0 开始，运动到 p1 的 0，然后运动到 p2 的 1）上移动得比在 x 轴（从 0 开始，运动到 p1 的 0，到 p2 的 0.58）上移动得快。 结果是，在这一段动画内元素运动得快。 到曲线的结尾，x 和 y 之间的关系反过来了，y 值保持为 1，没有变化，x 值从 0.58 变为 1，元素运动得慢。-->
+
+<!--  由于我们是在动画周期的中间点（50% 处）设置的 keyframe 规则，最终的结果是球向上和球向下是两个同样的动画过程。
+
+下面的例子模拟了杂耍球运动：
+
+cubic-bezier(0.3, 0.4, 0.5, 1.6);
+注意 y2 的值是大于 1 的。 虽然贝塞尔曲线是在 1*1 的坐标系统内，x 值只能在 0 到 1，但是 y 值是可以大于 1 的。 这样才能模拟杂耍球运动。
+
+把 id 为 green 的元素的 animation-timing-function 值改成 cubic-bezier 函数，函数的参数 x1，y1，x2，y2 值依次为 0.311、0.441、0.444、1.649。 -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .balls {
+        border-radius: 50%;
+        position: fixed;
+        width: 50px;
+        height: 50px;
+        top: 60%;
+        animation-name: jump;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+      }
+      #red {
+        background: red;
+        left: 25%;
+        animation-timing-function: linear;
+      }
+      #blue {
+        background: blue;
+        left: 50%;
+        animation-timing-function: ease-out;
+      }
+      #green {
+        background: green;
+        left: 75%;
+        /* animation-timing-function: cubic-bezier(0.69, 0.1, 1, 0.1); */
+        animation-timing-function: cubic-bezier(0.311, 0.441, 0.444, 1.649);
+      }
+
+      @keyframes jump {
+        50% {
+          top: 10%;
+        }
+      }
+    </style>
+    <div class="balls" id="red"></div>
+    <div class="balls" id="blue"></div>
+    <div class="balls" id="green"></div>
+  </body>
+</html>
