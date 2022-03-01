@@ -1,0 +1,150 @@
+<!-- 1. flex子元素的默认布局是水平排列，可以通过flex-direction属性改变其布局方向。
+2. flex子元素设置margin-left: auto 自动靠右 
+3. flex-direction默认是row，可以通过flex-direction属性改变其布局方向。 
+4. flex-direction属性可以设置为row、row-reverse、column、column-reverse。 
+5. 子元素排列的方向被称为 main axis（主轴）。 对于行，主轴水平贯穿每一个项目； 对于列，主轴垂直贯穿每一个项目。 
+6. 对于如何沿主轴线排放 flex 项目，有几种选择。 很常用的一种是 justify-content: center;这样子元素会居中（集中在主轴中间）排列。flex-start：主轴左侧，space-between：贴左右，space-around：不贴左右，首尾间距加起来等于子项中间间距，space-evenly：不贴左右，首尾间距都等于子项中间间距 
+7. align-items 属性用来定义 flex 子元素沿交叉轴的对齐方式。
+对行来说，定义的是元素的上下对齐方式；对列来说，定义的是元素的左右对齐方式。 
+8. align-items: stretch：拉伸项目(其他不拉伸，高度为子元素自身高度)，填满 flex 容器。 例如，排成行的项目从容器顶部拉伸到底部。 如未设置align-items的值，那么这就是默认值。 
+9. align-items: flex-start：对行来说，把项目移至容器顶部；center：把项目居中放置。baseline：沿基线对齐。
+基线是文本相关的概念，可以认为它是字母排列的下端基准线。 
+10. 默认情况下，flex 容器会调整项目大小，把它们都塞到一起。 对于行来说，所有项目都会在一条直线上。使用 flex-wrap 属性可以使项目换行展示。 这意味着多出来的子元素会被移到新的行或列。 换行发生的断点由子元素和容器的大小决定。 
+11. flex-grow 会在容器太大时对子元素作出调整， 如果一个项目的 flex-grow 属性值为 1，另一个项目的 flex-grow 属性值为 3，那么值为 3 的一个会较另一个扩大 3 倍。 默认为0，即如果存在剩余空间，也不放大。
+12. 子元素属性 flex-shrink 属性定义 flex 子元素的收缩规则（父元素宽度不够时），一个项目的 flex-shrink 属性值为1，另一个项目的 flex-shrink 属性值为 3，那么后者相比前者会受到 3 倍压缩。 
+
+13. flex-basis 属性定义了在使用 CSS 的 flex-shrink 或 flex-grow 属性对元素进行调整前，元素的初始大小。 默认为1，即如果空间不足，该项目将缩小
+14. flex-basis属性的单位与其他表示尺寸的属性的单位一致（px、em、% 等）。 如果值为 auto，则项目的尺寸随内容调整。设置后会覆盖width。 flex-basis给上面两个属性分配多余空间之前, 计算项目是否有多余空间, 默认值为 auto, 即项目本身的大小
+15. flex-grow、flex-shrink 和 flex-basis 属性可以在 flex 中一并设置。flex属性的默认设置是 flex: 0 1 auto; 
+16. flex: 2 2 150px;flex:1 1 150px; 在容器大于 300px 时，#box-1 扩大的空间会是 #box-2 扩大空间的两倍；在容器小于 300px 时，前者缩小的空间会是 #box-2 缩小空间的两倍。 300px是两个盒子的 flex-basis 属性值之和。 
+17. order 属性告诉 CSS flex 容器里子元素的顺序。 默认情况下，项目排列顺序与源 HTML 文件中顺序相同。 这个属性接受数字作为参数，可以使用负数。 
+18. flex 子项目的最后一个属性是 align-self。 这个属性允许你调整单个子元素自己的对齐方式，而不会影响到全部子元素。 因为 float、clear 和 vertical-align 等调整对齐方式的属性都不能应用于 flex 子元素，所以这个属性显得十分有用。
+align-self 可设置的值与 align-items 的一样，并且它会覆盖 align-items 所设置的值。
+19. flex: 1; === flex: 1 1 0;  initial (0 1 auto) 和 none (0 0 auto)
+flex: 1; === flex: 1 1 任意数字+任意长度单位;
+三个子元素设置flex: 1;会平分而不是自身宽度，flex: 1 1 auto; 不会平分而是自身宽度
+flex-basis给上面两个属性分配多余空间之前, 计算项目是否有多余空间, 默认值为 auto, 即项目本身的大小
+auto 为表示项目本身的大小, 如果设置为 auto, 那么这三个盒子就会按照自己内容的多少来等比例的放大和缩小, 所以出现了上图中三个盒子不一样大的情况
+那我们如果随便设置一个其他带有长度单位的数字呢, 那么他就不会按项目本身来计算, 所以它不关心内容, 只是把空间等比收缩和放大
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      header {
+        display: flex;
+      }
+      header .profile-thumbnail {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+      }
+      header .profile-name {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      header .follow-btn {
+        margin: 0 0 0 auto;
+        display: flex;
+        align-items: center;
+      }
+      header .follow-btn button {
+        border: 0;
+        border-radius: 3px;
+        padding: 5px;
+      }
+      header h3,
+      header h4 {
+        margin: 0;
+        display: flex;
+      }
+      #inner p {
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+      #inner hr {
+        margin: 20px 0;
+        border-style: solid;
+        opacity: 0.1;
+      }
+      footer {
+        display: flex;
+      }
+      footer .stats {
+        font-size: 15px;
+        display: flex;
+      }
+      footer .stats strong {
+        font-size: 18px;
+      }
+      footer .stats .likes {
+        margin-left: 10px;
+      }
+      footer .cta {
+        margin-left: auto;
+      }
+      footer .cta button {
+        border: 0;
+        background: transparent;
+      }
+
+      #box-container {
+        display: flex;
+        height: 500px;
+      }
+      #box-1 {
+        background-color: dodgerblue;
+        flex: 2 2 150px;
+        height: 200px;
+      }
+
+      #box-2 {
+        background-color: orangered;
+        flex: 1 1 150px;
+        height: 200px;
+      }
+    </style>
+    <header>
+      <img src="https://freecodecamp.s3.amazonaws.com/quincy-twitter-photo.jpg" alt="Quincy Larson's profile picture" class="profile-thumbnail" />
+      <div class="profile-name">
+        <h3>Quincy Larson</h3>
+        <h4>@ossia</h4>
+      </div>
+      <div class="follow-btn">
+        <button>Follow</button>
+      </div>
+    </header>
+    <div id="inner">
+      <p>I meet so many people who are in search of that one trick that will help them work smart. Even if you work smart, you still have to work hard.</p>
+      <span class="date">1:32 PM - 12 Jan 2018</span>
+      <hr />
+    </div>
+    <footer>
+      <div class="stats">
+        <div class="Retweets"><strong>107</strong> Retweets</div>
+        <div class="likes"><strong>431</strong> Likes</div>
+      </div>
+      <div class="cta">
+        <button class="share-btn">Share</button>
+        <button class="retweet-btn">Retweet</button>
+        <button class="like-btn">Like</button>
+      </div>
+    </footer>
+    <div id="box-container">
+      <div id="box-1"></div>
+      <div id="box-2"></div>
+    </div>
+  </body>
+</html>
