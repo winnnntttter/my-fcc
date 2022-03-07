@@ -1,0 +1,62 @@
+<!-- 
+  1. 之前都是围绕网格容器的。 grid-column 是用于网格项本身的属性
+  2. 假想的水平线和垂直线被称为线（lines）。 这些线在网格的左上角从 1 开始编号，垂直线向右、水平线向下累加计数 3x3 网格的线条 从左上1,2,3,4
+  3. 要设置一个网格项占据几列，你可以使用 grid-column 属性加上网格线条的编号来定义网格项开始和结束的位置，.item5{grid-column: 1 / 3;}占据第一列和第二列
+  4. grid-row:2/4; 占据第二行和第三行
+
+  5. 使用网格项的 justify-self 属性，设置其内容的位置在单元格内沿水平轴的对齐方式。 默认情况下，这个属性的值是 stretch，这将使内容占满整个单元格的宽度 start：使内容在单元格左侧对齐，center：使内容在单元格居中对齐, end：使内容在单元格右侧对齐
+  6. 正如能设置网格项沿水平方向的对齐方式一样，我们也可以设置网格项沿竖直方向的对齐方式。 为此，我们可以对网格项使用 align-self 属性来实现。可选值同上
+  7. 对网格容器使用 justify-items 使它们一次性沿水平轴对齐。 align-items 让网格中所有的网格项沿竖直方向对齐
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .d1 {
+        background: LightSkyBlue;
+      }
+      .d2 {
+        background: LightSalmon;
+        justify-self: left;
+      }
+      .d3 {
+        background: PaleTurquoise;
+        align-self: start;
+      }
+      .d4 {
+        background: LightPink;
+      }
+      .d5 {
+        background: PaleGreen;
+        /* grid-column: 1 / 3; */
+        grid-row: 2/4;
+      }
+
+      .container {
+        font-size: 40px;
+        width: 100%;
+        background: LightGray;
+        display: grid;
+        grid-template-columns: 1fr 100px 1fr;
+        grid-template-rows: 60px 60px 60px;
+        grid-gap: 10px;
+        justify-items: center;
+        align-items: center;
+      }
+    </style>
+
+    <div class="container">
+      <div class="d1">1</div>
+      <div class="d2">2</div>
+      <div class="d3">3</div>
+      <div class="d4">4</div>
+      <div class="d5">5</div>
+    </div>
+  </body>
+</html>

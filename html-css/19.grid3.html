@@ -1,0 +1,144 @@
+<!-- 
+  1. 通过给容器加上 grid-template-areas 为该区域指定一个自定义名称
+  2. grid-template-areas:
+  "header header header"
+  "advert content content"
+  "advert footer footer";
+  3. 通过引用你所定义的区域的名称，将元素放入相应的区域
+  4. grid-area 属性还有另一种使用方式。 如果网格中没有定义区域模板，你也可以像这样为它添加一个模板item1 { grid-area: 1/1/2/4; }上例中数字代表这些值：
+  grid-area: 水平开始线 / 垂直开始线 / horizontal line to end at / vertical line to end at;上述代表占据第1行，1-3列。
+  5. 如果一个网格共有 100 行且每行高度相同， 那我们就需要输入 100 个值，这显然不太实际。 为此，更好的方式是使用 repeat 方法指定行或列的重复次数，后面加上逗号以及需要重复的值。你还可以用 repeat 方法重复多个值，并在定义网格结构时与其他值一起使用。 比如：grid-template-columns: repeat(2, 1fr 50px) 20px;效果相当于：grid-template-columns: 1fr 50px 1fr 50px 20px;
+  6. 内置函数 minmax 也可用于设置 grid-template-columns 和 grid-template-rows 的值。 它的作用是在网格容器改变大小时限制网格项的大小。 为此，你需要指定网格项允许的尺寸范围。grid-template-columns: 100px minmax(50px, 200px);第一列宽度为 100px，第二列宽度最小值是 50px，最大值是 200px。
+
+  repeat 方法带有一个名为自动填充（auto-fill）的功能。 它的功能是根据容器的大小，尽可能多地放入指定大小的行或列。 你可以通过结合 auto-fill 和 minmax 来更灵活地布局。repeat(auto-fill, minmax(60px, 1fr));首先，列的宽度会随容器大小改变。其次，只要容器宽度不足以插入一个宽为 60px 的列，当前行的所有列就都会一直拉伸。 注意： 如果容器宽度不足以将所有网格项放在同一行，余下的网格项将会移至新的一行。
+  auto-fit 效果几乎和 auto-fill 一样。 不同点仅在于，当容器的大小大于各网格项之和时，auto-fill 会持续地在一端放入空行或空列，这样就会使所有网格项挤到另一边；而 auto-fit 则不会在一端放入空行或空列，而是会将所有网格项拉伸至合适的大小。
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .item1 {
+        background: LightSkyBlue;
+        /* grid-area: header; */
+        grid-area: 1/1/2/4;
+      }
+      .item2 {
+        background: LightSalmon;
+      }
+      .item3 {
+        background: PaleTurquoise;
+      }
+      .item4 {
+        background: LightPink;
+      }
+      .item5 {
+        background: PaleGreen;
+        /* grid-area: footer; */
+        /* grid-area: 3/1/4/4; */
+      }
+
+      .container {
+        font-size: 40px;
+        min-height: 300px;
+        width: 100%;
+        background: LightGray;
+        display: grid;
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 10px;
+        grid-template-areas:
+          'header header header'
+          'advert content content'
+          'footer footer footer';
+      }
+    </style>
+    <div class="container">
+      <div class="item1">1</div>
+      <div class="item2">2</div>
+      <div class="item3">3</div>
+      <div class="item4">4</div>
+      <div class="item5">5</div>
+    </div>
+    <style>
+      .item11 {
+        background: LightSkyBlue;
+      }
+      .item12 {
+        background: LightSalmon;
+      }
+      .item13 {
+        background: PaleTurquoise;
+      }
+      .item14 {
+        background: LightPink;
+      }
+      .item15 {
+        background: PaleGreen;
+      }
+
+      .container11 {
+        font-size: 40px;
+        min-height: 100px;
+        width: 100%;
+        background: LightGray;
+        display: grid;
+        /* 只修改这一行下面的代码 */
+
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+
+        /* 只修改这一行上面的代码 */
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 0px;
+      }
+
+      .container12 {
+        font-size: 40px;
+        min-height: 100px;
+        width: 100%;
+        background: Silver;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(60px, 1fr));
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 10px;
+      }
+      .container13 {
+        font-size: 40px;
+        min-height: 100px;
+        width: 100%;
+        background: Silver;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 10px;
+      }
+    </style>
+    <div class="container11">
+      <div class="item11">1</div>
+      <div class="item12">2</div>
+      <div class="item13">3</div>
+      <div class="item14">4</div>
+      <div class="item15">5</div>
+    </div>
+    <div class="container12">
+      <div class="item11">1</div>
+      <div class="item12">2</div>
+      <div class="item13">3</div>
+      <div class="item14">4</div>
+      <div class="item15">5</div>
+    </div>
+    <div class="container13">
+      <div class="item11">1</div>
+      <div class="item12">2</div>
+      <div class="item13">3</div>
+      <div class="item14">4</div>
+      <div class="item15">5</div>
+    </div>
+  </body>
+</html>
