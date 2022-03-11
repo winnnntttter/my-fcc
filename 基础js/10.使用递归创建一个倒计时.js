@@ -38,3 +38,4 @@ function rangeOfNumbers(startNum, endNum) {
     return countArray;
   }
 }
+console.log(rangeOfNumbers(5, 10)); // [5, 6, 7, 8, 9, 10]
