@@ -77,3 +77,21 @@ const profileUpdate = profileData => {
   const { name, age, nationality, location } = profileData;
 };
 const profileUpdate2 = ({ name, age, nationality, location }) => {};
+
+//  ES6 提供了一个语法糖，消除了类似 x: x 这种冗余的写法。 你可以只写一次 x，解释器会自动将其转换成 x: x（或效果相同的内容）
+const getMousePosition = (x, y) => ({
+  x: x,
+  y: y
+});
+const getMousePosition2 = (x, y) => ({ x, y });
+
+// 用 ES6 的语法在对象中定义函数的时候，可以删除 function 关键词和冒号
+const person = {
+  name: 'Taylor',
+  sayHello: function () {
+    return `Hello! My name is ${this.name}.`;
+  },
+  sayHello2() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
