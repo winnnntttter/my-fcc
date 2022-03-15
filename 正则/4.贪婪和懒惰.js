@@ -14,7 +14,8 @@ console.log(text.match(myRegex)); // ["<h1>Winter is coming</h1>"]
 let myRegex2 = /<.*?>/; // 修改这一行
 console.log(text.match(myRegex2)); // ["<h1>"]
 
-// ? 也可看做是不是含有都能匹配
+// ? 也可看做是不是含有都能匹配 
+// 可以使用问号 ? 指定可能存在的元素。 这将检查前面的零个或一个元素。 可以将此符号视为前面的元素是可选的。
 let reg3 = /\d+a?/;
 console.log('123'.match(reg3)); // ["123"]
 console.log('123a'.match(reg3)); // ["123a"]
