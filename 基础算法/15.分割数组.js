@@ -7,13 +7,3 @@ function chunk(arr, size) {
   return result;
 }
 console.log(chunk(['a', 'b', 'c', 'd'], 2)); // [['a', 'b'], ['c', 'd']]
-
-let dog = {
-  name: 'Spot',
-  numLegs: 4,
-  sayLegs: function () {
-    return 'This dog has ' + dog.numLegs + ' legs.';
-  }
-};
-
-console.log(dog.sayLegs()); // This dog has 4 legs.
