@@ -50,3 +50,6 @@ console.log(duck2.constructor === Bird2); // true
 // 就像人们从父母那里继承基因一样，对象也可直接从创建它的构造函数那里继承其 prototype
 // duck 从 Bird 构造函数那里继承了它的 prototype。 你可以使用 isPrototypeOf 方法来验证他们之间的关系：
 console.log(Bird2.prototype.isPrototypeOf(duck2)); // true
+
+console.log(Object.prototype.isPrototypeOf(Bird.prototype)); // true
+console.log(Object.prototype.isPrototypeOf(Bird2.prototype)); // true
