@@ -33,10 +33,10 @@ function diffArray(arr1, arr2) {
       newArr.push(item);
     }
   }); */
-  // var newArr1 = arr1.filter(item => arr2.indexOf(item) === -1);
-  // var newArr2 = arr2.filter(item => arr1.indexOf(item) === -1);
-  // return newArr1.concat(newArr2);
-  return newArr;
+  var newArr1 = arr1.filter(item => arr2.indexOf(item) === -1);
+  var newArr2 = arr2.filter(item => arr1.indexOf(item) === -1);
+  return newArr1.concat(newArr2);
+  // return newArr;
 }
 
 diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
